@@ -87,7 +87,7 @@
 (defun format-csharp-before-save-hook ()
   (when (eq major-mode 'csharp-mode)
     (+format/region-or-buffer)
- ))
+    ))
 
 (add-hook 'before-save-hook #'format-csharp-before-save-hook)
 
@@ -113,12 +113,15 @@
 (map! :leader "8" 'harpoon-go-to-8)
 (map! :leader "9" 'harpoon-go-to-9)
 
-;Org mode stuffs
+                                        ;Org mode stuffs
 (after! org
-        (setq org-roam-directory "~/Documents/org/roam/")
-        (setq org-roam-index-file "~/Documents/org/roam/index.org"))
+  (setq org-roam-directory "~/Documents/org/roam/")
+  (setq org-roam-index-file "~/Documents/org/roam/index.org"))
 
 ;; Auto commit / push for org notes.
 ;; this prompts you for commit message (setq-default gac-ask-for-summary-p t)
 (setq-default gac-automatically-push-p t)
 (setq-default gac-automatically-add-new-files-p t)
+
+(defun pull-notes-fun()(let((default-directory "~/Documents/org/roam"))(shell-command "git pull")))
+(add-hook 'emacs-startup-hook #'pull-notes-fun)
