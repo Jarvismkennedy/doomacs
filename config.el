@@ -123,5 +123,10 @@
 (setq-default gac-automatically-push-p t)
 (setq-default gac-automatically-add-new-files-p t)
 
-(defun pull-notes-fun()(let((default-directory "~/Documents/org/roam"))(shell-command "git pull")))
-(add-hook 'emacs-startup-hook #'pull-notes-fun)
+(defun pull-notes-fun(_)(
+  let((default-directory "~/Documents/org/roam"))
+     (shell-command "git pull")
+     (org-roam-db-sync)
+  )
+)
+(add-hook 'after-make-frame-functions #'pull-notes-fun)

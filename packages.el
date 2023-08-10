@@ -51,4 +51,5 @@
 (package! harpoon)
 (package! emmet-mode)
 (package! git-auto-commit-mode)
-(package! org :pin "ca873f7"); latest org update breaks org roam links on macos
+(package! org :pin "ca873f7")
+;;(package! ox-moderncv :recipe (:host gitlab :repo "Titan-C/org-cv"))
