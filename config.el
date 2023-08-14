@@ -33,7 +33,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-rose-pine)
-;;(setq doom-font "JetBrainsMono NerdFont")
+(setq doom-font "JetBrainsMono Nerd Font")
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
@@ -79,6 +79,9 @@
 ;; custom-stuff
 (set-frame-parameter (selected-frame) 'alpha-background 80)
 (add-to-list 'default-frame-alist '(alpha-background . 80))
+(after! vterm
+  (set-popup-rule! "*doom:vterm-popup:*" :size 1 :vslot -4 :select t :side 'right)
+  )
 
 ;; lang stuff
 ;;
@@ -114,7 +117,7 @@
 (map! :leader "8" 'harpoon-go-to-8)
 (map! :leader "9" 'harpoon-go-to-9)
 
-                                        ;Org mode stuffs
+;Org mode stuffs
 (after! org-roam
   :ensure t
   :init
@@ -122,9 +125,6 @@
   :custom
   (setq org-roam-directory "~/Documents/org/roam/")
   (setq org-roam-index-file "~/Documents/org/roam/index.org"))
-
-(use-package! ox-moderncv
-  :after org)
 
 ;; Auto commit / push for org notes.
 ;; this prompts you for commit message (setq-default gac-ask-for-summary-p t)

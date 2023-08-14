@@ -51,5 +51,3 @@
 (package! harpoon)
 (package! emmet-mode)
 (package! org :pin "ca873f7")
-(package! org-cv :recipe (:host github :repo "Titan-C/org-cv"))
-;;(package! ox-moderncv :recipe (:host gitlab :repo "Titan-C/org-cv"))
