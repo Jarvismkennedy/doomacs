@@ -83,6 +83,7 @@
 ;; lang stuff
 ;;
 (setq-hook! 'csharp-mode-hook +format-with-lsp nil)
+(setq-hook! 'web-mode-hook +format-with-lsp nil)
 (set-formatter! 'csharpier "dotnet csharpier" :modes '(csharp-mode))
 (defun format-csharp-before-save-hook ()
   (when (eq major-mode 'csharp-mode)
@@ -114,7 +115,11 @@
 (map! :leader "9" 'harpoon-go-to-9)
 
                                         ;Org mode stuffs
-(after! org
+(after! org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
   (setq org-roam-directory "~/Documents/org/roam/")
   (setq org-roam-index-file "~/Documents/org/roam/index.org"))
 
@@ -126,10 +131,17 @@
 (setq-default gac-automatically-push-p t)
 (setq-default gac-automatically-add-new-files-p t)
 
-(defun pull-notes-fun(_)(
-  let((default-directory "~/Documents/org/roam"))
-     (shell-command "git pull")
-     (org-roam-db-sync)
+(defun pull-notes-fun(_)
+  (
+   let((default-directory "~/Documents/org/roam"))
+   (shell-command "git pull")
+   (org-roam-db-sync)
+   )
   )
-)
 (add-hook 'after-make-frame-functions #'pull-notes-fun)
+
+;; lsp settings
+(setq gc-cons-threshold 100000000)
+(setq lsp-log-io nil) ; if set to true can cause a performance hit
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq lsp-use-plists t)
