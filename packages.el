@@ -50,4 +50,5 @@
 (package! prettier)                                        ;(unpin! t)
 (package! harpoon)
 (package! emmet-mode)
+(package! exec-path-from-shell)
 (package! org :pin "ca873f7")
